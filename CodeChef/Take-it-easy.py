@@ -1,21 +1,21 @@
 def candy():
     n = int(input())
-    li = []
-    for _ in range(n):
-        a = int(input())
-        li.append(a)
-
-    while True:
-        li = sorted(li)
-        li[0] += int(((li[-1] / 2) - 2))
-        li[-1] -= int((li[-1] / 2) - 2)
-        if not int(((li[-1] / 2) - 2)) == 2:
-            break
-    same = all(x == li[0] for x in li)
-    if same == 0:
+    li = list(map(int, input().split()))
+    s = sum(li)
+    if s % n:
         print("No")
     else:
-        print("Yes")
+        need = 0
+        avg = s // n
+        for i in li:
+            if abs(avg - i) % 2:
+                need = 1
+                break
+            need += avg - i
+        if need:
+            print("No")
+        else:
+            print("Yes")
 
 
 for _ in range(int(input())):
